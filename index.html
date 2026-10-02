@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Class of 2015 - Christ The King College, Onitsha</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         LOGIN SCREEN
+    ========================================== -->
+
+    <div id="loginScreen" class="login-screen">
+
+        <div class="login-card">
+
+            <div class="login-logo">
+                CTK
+            </div>
+
+            <h1>Class of 2015</h1>
+
+            <h2>Christ The King College, Onitsha</h2>
+
+            <p class="login-subtitle">
+                Member & Dues Management System
+            </p>
+
+            <form id="loginForm">
+
+                <div class="login-field">
+
+                    <label for="username">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Enter username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+                <div class="login-field">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+                <p id="loginError" class="login-error"></p>
+
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    Sign In
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================
+         APPLICATION
+    ========================================== -->
+
+    <div
+        id="application"
+        class="application hidden"
+    >
+
+        <div class="container">
+
+
+            <!-- HEADER -->
+
+            <header class="header">
+
+                <div class="header-title">
+
+                    <h1>
+                        Class of 2015 - Christ The King College, Onitsha
+                    </h1>
+
+                    <p>
+                        Member, dues, payment and expense management system
+                    </p>
+
+                </div>
+
+
+                <div class="header-actions">
+
+                    <button
+                        id="exportRecordsExcelBtn"
+                        class="btn-secondary"
+                    >
+                        Records Excel
+                    </button>
+
+                    <button
+                        id="exportRecordsPdfBtn"
+                        class="btn-secondary"
+                    >
+                        Records PDF
+                    </button>
+
+                    <button
+                        id="exportPaymentsExcelBtn"
+                        class="btn-secondary"
+                    >
+                        Payments Excel
+                    </button>
+
+                    <button
+                        id="exportPaymentsPdfBtn"
+                        class="btn-secondary"
+                    >
+                        Payments PDF
+                    </button>
+
+                    <button
+                        id="exportExpensesExcelBtn"
+                        class="btn-secondary"
+                    >
+                        Expenses Excel
+                    </button>
+
+                    <button
+                        id="exportExpensesPdfBtn"
+                        class="btn-secondary"
+                    >
+                        Expenses PDF
+                    </button>
+
+                    <button
+                        id="backupBtn"
+                        class="btn-secondary"
+                    >
+                        Backup Data
+                    </button>
+
+                    <button
+                        id="restoreBtn"
+                        class="btn-secondary"
+                    >
+                        Restore Data
+                    </button>
+
+                    <button
+                        id="logoutBtn"
+                        class="btn-logout"
+                    >
+                        Logout
+                    </button>
+
+                    <input
+                        type="file"
+                        id="restoreFile"
+                        accept=".json"
+                        hidden
+                    >
+
+                </div>
+
+            </header>
+
+
+            <!-- =========================================
+                 DASHBOARD
+            ========================================== -->
+
+            <section class="dashboard">
+
+                <div class="card card-members">
+
+                    <h3>
+                        Total Members
+                    </h3>
+
+                    <p id="totalMembers">
+                        0
+                    </p>
+
+                </div>
+
+
+                <div class="card card-due">
+
+                    <h3>
+                        Total Due
+                    </h3>
+
+                    <p id="totalDue">
+                        ₦0.00
+                    </p>
+
+                </div>
+
+
+                <div class="card card-paid">
+
+                    <h3>
+                        Total Paid
+                    </h3>
+
+                    <p id="totalPaid">
+                        ₦0.00
+                    </p>
+
+                </div>
+
+
+                <div class="card card-outstanding">
+
+                    <h3>
+                        Total Outstanding
+                    </h3>
+
+                    <p id="totalDebt">
+                        ₦0.00
+                    </p>
+
+                </div>
+
+
+                <div class="card card-expenses">
+
+                    <h3>
+                        Total Expenses
+                    </h3>
+
+                    <p id="totalExpenses">
+                        ₦0.00
+                    </p>
+
+                </div>
+
+
+                <div class="card card-balance">
+
+                    <h3>
+                        Current Balance
+                    </h3>
+
+                    <p id="totalBalance">
+                        ₦0.00
+                    </p>
+
+                </div>
+
+
+                <div class="card card-cleared">
+
+                    <h3>
+                        Cleared
+                    </h3>
+
+                    <p id="totalCleared">
+                        0
+                    </p>
+
+                </div>
+
+
+                <div class="card card-owing">
+
+                    <h3>
+                        Owing
+                    </h3>
+
+                    <p id="totalOwing">
+                        0
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================================
+                 ADD MEMBER
+            ========================================== -->
+
+            <section class="form-section">
+
+                <div class="section-header">
+
+                    <h2>
+                        Add Member
+                    </h2>
+
+                    <p>
+                        Add a member's personal information and dues record.
+                    </p>
+
+                </div>
+
+
+                <form id="debtForm">
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter member's full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Address
+                        </label>
+
+                        <input
+                            type="text"
+                            id="address"
+                            placeholder="Enter member's address"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="city">
+                            City
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            placeholder="Enter city"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="state">
+                            State
+                        </label>
+
+                        <input
+                            type="text"
+                            id="state"
+                            placeholder="Enter state"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone1">
+                            Phone Number 1
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone1"
+                            placeholder="Enter primary phone number"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone2">
+                            Phone Number 2
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone2"
+                            placeholder="Enter secondary phone number"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="due">
+                            Amount Due (₦)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="due"
+                            placeholder="Enter amount due"
+                            min="0"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="paid">
+                            Initial Amount Paid (₦)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="paid"
+                            placeholder="Enter initial amount paid"
+                            min="0"
+                            step="0.01"
+                            value="0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="date">
+                            Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="date"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="description">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="description"
+                            placeholder="Enter a description"
+                            rows="3"
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Add Member
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- =========================================
+                 RECORD PAYMENT
+            ========================================== -->
+
+            <section class="form-section">
+
+                <div class="section-header">
+
+                    <h2>
+                        Record Payment
+                    </h2>
+
+                    <p>
+                        Record a payment made by an existing member.
+                    </p>
+
+                </div>
+
+
+                <form id="paymentForm">
+
+                    <div class="form-group">
+
+                        <label for="paymentMember">
+                            Member
+                        </label>
+
+                        <select
+                            id="paymentMember"
+                            required
+                        >
+
+                            <option value="">
+                                Select a member
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="paymentAmount">
+                            Payment Amount (₦)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="paymentAmount"
+                            placeholder="Enter payment amount"
+                            min="0.01"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="paymentDate">
+                            Payment Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="paymentDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="paymentDescription">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="paymentDescription"
+                            placeholder="Enter payment description"
+                            rows="3"
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Record Payment
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- =========================================
+                 ADD EXPENSE
+            ========================================== -->
+
+            <section class="form-section expense-form-section">
+
+                <div class="section-header">
+
+                    <h2>
+                        Add Expense
+                    </h2>
+
+                    <p>
+                        Record money spent by the association. Expenses are automatically deducted from the current balance.
+                    </p>
+
+                </div>
+
+
+                <form id="expenseForm">
+
+                    <div class="form-group">
+
+                        <label for="expenseAmount">
+                            Expense Amount (₦)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="expenseAmount"
+                            placeholder="Enter expense amount"
+                            min="0.01"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="expenseDate">
+                            Expense Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="expenseDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="expenseDescription">
+                            Expense Description
+                        </label>
+
+                        <textarea
+                            id="expenseDescription"
+                            placeholder="Example: Refreshments for meeting, transportation, printing, venue..."
+                            rows="3"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn-primary"
+                    >
+                        Add Expense
+                    </button>
+
+                </form>
+
+            </section>
+
+
+            <!-- =========================================
+                 MEMBER RECORDS
+            ========================================== -->
+
+            <section class="records-section">
+
+                <div class="section-header">
+
+                    <h2>
+                        Member Records
+                    </h2>
+
+                    <p>
+                        Search and filter member information and dues.
+                    </p>
+
+                </div>
+
+
+                <div class="advanced-filters">
+
+                    <div class="search-box">
+
+                        <label for="search">
+                            Search Members
+                        </label>
+
+                        <input
+                            type="text"
+                            id="search"
+                            placeholder="Search name, address, city, state, phone..."
+                        >
+
+                    </div>
+
+
+                    <div class="filter-box">
+
+                        <label for="cityFilter">
+                            City
+                        </label>
+
+                        <select id="cityFilter">
+
+                            <option value="all">
+                                All Cities
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-box">
+
+                        <label for="stateFilter">
+                            State
+                        </label>
+
+                        <select id="stateFilter">
+
+                            <option value="all">
+                                All States
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-box">
+
+                        <label for="statusFilter">
+                            Status
+                        </label>
+
+                        <select id="statusFilter">
+
+                            <option value="all">
+                                All
+                            </option>
+
+                            <option value="owing">
+                                Owing
+                            </option>
+
+                            <option value="cleared">
+                                Cleared
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>State</th>
+                                <th>Phone 1</th>
+                                <th>Phone 2</th>
+                                <th>Amount Due</th>
+                                <th>Amount Paid</th>
+                                <th>Outstanding</th>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="recordsTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================================
+                 PAYMENT HISTORY
+            ========================================== -->
+
+            <section class="payments-section">
+
+                <div class="section-header">
+
+                    <h2>
+                        Payment History
+                    </h2>
+
+                    <p>
+                        View all payments made by members.
+                    </p>
+
+                </div>
+
+
+                <div class="search-box">
+
+                    <label for="paymentSearch">
+                        Search Payments
+                    </label>
+
+                    <input
+                        type="text"
+                        id="paymentSearch"
+                        placeholder="Search by member or description..."
+                    >
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Date</th>
+                                <th>Member</th>
+                                <th>Amount Paid</th>
+                                <th>Description</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="paymentsTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================================
+                 EXPENSE HISTORY
+            ========================================== -->
+
+            <section class="expenses-section">
+
+                <div class="section-header">
+
+                    <h2>
+                        Expense History
+                    </h2>
+
+                    <p>
+                        View all expenses and their descriptions.
+                    </p>
+
+                </div>
+
+
+                <div class="search-box">
+
+                    <label for="expenseSearch">
+                        Search Expenses
+                    </label>
+
+                    <input
+                        type="text"
+                        id="expenseSearch"
+                        placeholder="Search expense descriptions..."
+                    >
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Date</th>
+                                <th>Expense Description</th>
+                                <th>Amount</th>
+                                <th>Action</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="expensesTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================================
+                 BALANCE SUMMARY
+            ========================================== -->
+
+            <section class="balance-section">
+
+                <div class="balance-content">
+
+                    <div>
+
+                        <h2>
+                            Financial Summary
+                        </h2>
+
+                        <p>
+                            Current balance is calculated from all member payments minus recorded expenses.
+                        </p>
+
+                    </div>
+
+
+                    <div class="balance-calculation">
+
+                        <div class="balance-row">
+
+                            <span>
+                                Total Money Received
+                            </span>
+
+                            <strong id="balancePaid">
+                                ₦0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="balance-row expense-row">
+
+                            <span>
+                                Less: Total Expenses
+                            </span>
+
+                            <strong id="balanceExpenses">
+                                ₦0.00
+                            </strong>
+
+                        </div>
+
+
+                        <div class="balance-divider"></div>
+
+
+                        <div class="balance-row final-balance">
+
+                            <span>
+                                Current Balance
+                            </span>
+
+                            <strong id="balanceAmount">
+                                ₦0.00
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =========================================
+                 DATA MANAGEMENT
+            ========================================== -->
+
+            <section class="danger-section">
+
+                <div>
+
+                    <h2>
+                        Data Management
+                    </h2>
+
+                    <p>
+                        Clearing data permanently removes all member,
+                        payment and expense records from this browser.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="clearDataBtn"
+                    class="btn-danger"
+                >
+                    Clear All Data
+                </button>
+
+            </section>
+
+
+            <!-- FOOTER -->
+
+            <footer class="footer">
+
+                <p>
+                    Class of 2015 - Christ The King College, Onitsha
+                </p>
+
+                <p>
+                    Member & Dues Management System
+                </p>
+
+                <p>
+                    Data is stored locally in this browser.
+                </p>
+
+            </footer>
+
+        </div>
+
+    </div>
+
+
+    <!-- EXCEL -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+
+    <!-- PDF -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+    <!-- PDF TABLE -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
+
+
+    <!-- APPLICATION SCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
